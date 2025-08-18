@@ -39,11 +39,13 @@ def create_df_with_pandas(filename, total_linhas, chunksize=chunksize):
 
 if __name__ == "__main__":
     import time
-
+    import utils
     print("Iniciando o processamento do arquivo.")
     start_time = time.time()
     df = create_df_with_pandas(filename, total_linhas, chunksize)
     took = time.time() - start_time
-
+    file_size_processed = utils.get_file_size(filename)
+    #cpu_speed = utils.get_processor_speed()
+    save_benchmark_results = utils.benchmark_mark_time(__file__,file_size_processed, took, cpu_speed)
     print(df.head())
     print(f"Processing took: {took:.2f} sec")

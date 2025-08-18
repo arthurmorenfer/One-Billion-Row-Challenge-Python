@@ -14,7 +14,11 @@ def create_duckdb():
 
 if __name__ == "__main__":
     import time
+    import utils
     start_time = time.time()
     create_duckdb()
     took = time.time() - start_time
+    file_size_processed = utils.get_file_size(filename)
+    #cpu_speed = utils.get_processor_speed()
+    save_benchmark_results = utils.benchmark_mark_time(__file__,file_size_processed, took, cpu_speed)
     print(f"Duckdb Took: {took:.2f} sec")
