@@ -15,11 +15,15 @@ def get_file_size(file_path: str) -> float:
 
 def benchmark_mark_time(file_language_run: str, file_size: int, time: str, proc_speed: str ) -> str:
     import csv
+    results_header = ["file_name","file_size_mb","time_run","cpu_speed_mhz"]
     results_file = 'results.csv'
+    result_file_exists = os.path.exists(results_file)
     result = ""
     data_run_results = [file_language_run, file_size, time, proc_speed]
-    with open(results_file, 'a', newline='') as csvfile:
+    with open(results_file, mode='a', newline='') as csvfile:
         writer = csv.writer(csvfile)
+        if not result_file_exists:
+            writer.writerow(results_header)
         writer.writerow(data_run_results)
         result = "Data added"
     return result
