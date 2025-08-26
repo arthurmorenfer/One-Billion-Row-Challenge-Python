@@ -1,12 +1,12 @@
 #%%
 import os
-#import psutil
+import psutil
 
-#def get_processor_speed() -> float:
-#    import psutil
-#    cpu_ghz = psutil.cpu_freq()
-#    processor_ghz = cpu_ghz.current:.2f
-#    return processor_ghz
+def get_processor_speed() -> float:
+    import psutil
+    cpu_ghz = psutil.cpu_freq()
+    processor_ghz = f'{cpu_ghz.current:.2f}'
+    return processor_ghz
 
 def get_file_size(file_path: str) -> float:
     import os
@@ -30,11 +30,11 @@ def benchmark_mark_time(file_language_run: str, file_size: int, time: str, proc_
 
 
 
-#%%
-import pandas as pd
-import time
-start_time = time.time()
-results = pd.read_csv('results.csv')
-print(results)
-took = time.time() - start_time
-print(f"Duckdb Took: {took:.2f} sec")
+##%%
+#import pandas as pd
+#import time
+#start_time = time.time()
+#results = pd.read_csv('results.csv')
+#print(results)
+#took = time.time() - start_time
+#print(f"Duckdb Took: {took:.2f} sec")

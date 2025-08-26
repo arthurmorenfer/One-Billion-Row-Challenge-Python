@@ -83,10 +83,11 @@ def estimate_file_size(weather_station_names, num_rows_to_create):
     return f"O tamanho estimado do arquivo é:  {human_file_size}.\nO tamanho final será provavelmente muito menor (metade)."
 
 
-def build_test_data(weather_station_names, num_rows_to_create):
+def build_test_data(weather_station_names, num_rows_to_create, file_name):
     """
     Generates and writes to file the requested length of test data
     """
+    measurements_file_path = f'./data/'+ file_name + '.txt'
     start_time = time.time()
     coldest_temp = -99.9
     hottest_temp = 99.9
@@ -96,7 +97,8 @@ def build_test_data(weather_station_names, num_rows_to_create):
     print('Criando o arquivo... isso vai demorar uns 10 minutos...')
 
     try:
-        with open("./data/measurements.txt", 'w', encoding="utf-8") as file:
+        with open(measurements_file_path, 'w', encoding="utf-8") as file:
+            #"./data/measurements_one_million.txt", 'w', encoding="utf-8") as file:
             for s in range(0,num_rows_to_create // batch_size):
                 
                 batch = random.choices(station_names_10k_max, k=batch_size)
@@ -111,10 +113,10 @@ def build_test_data(weather_station_names, num_rows_to_create):
     
     end_time = time.time()
     elapsed_time = end_time - start_time
-    file_size = os.path.getsize("./data/measurements.txt")
+    file_size = os.path.getsize(measurements_file_path)
     human_file_size = convert_bytes(file_size)
  
-    print("Arquivo escrito com sucesso data/measurements.txt")
+    print(f"Arquivo escrito com sucesso data/{measurements_file_path})")#measurements.txt")
     print(f"Tamanho final:  {human_file_size}")
     print(f"Tempo decorrido: {format_elapsed_time(elapsed_time)}")
 
@@ -123,11 +125,12 @@ def main():
     """
     main program function
     """
-    num_rows_to_create = 1000000
+    num_rows_to_create = 1000000000
+    file_name_input = input(f"Insira o nome do arquivo, atualmente está com esse numero de linhas {num_rows_to_create}: ")
     weather_station_names = []
     weather_station_names = build_weather_station_name_list()
     print(estimate_file_size(weather_station_names, num_rows_to_create))
-    build_test_data(weather_station_names, num_rows_to_create)
+    build_test_data(weather_station_names, num_rows_to_create, file_name_input)
     print("Arquivo de teste finalizado.")
 
 

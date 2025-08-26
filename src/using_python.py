@@ -42,7 +42,7 @@ def processar_temperaturas(path_do_csv):
 
 
 if __name__ == "__main__":
-    import utils
+    import utils_benchmark
     path_do_csv = "data/measurements.txt"
 
     print("Iniciando o processamento do arquivo.")
@@ -55,8 +55,8 @@ if __name__ == "__main__":
     for station, metrics in resultados.items():
         print(station, metrics, sep=': ')
     
-    file_size_processed = utils.get_file_size(path_do_csv)
-    #cpu_speed = utils.get_processor_speed()
-    save_benchmark_results = utils.benchmark_mark_time(__file__,file_size_processed,end_time - start_time, cpu_speed)
+    file_size_processed = utils_benchmark.get_file_size(path_do_csv)
+    cpu_speed = utils_benchmark.get_processor_speed()
+    save_benchmark_results = utils_benchmark.benchmark_mark_time(__file__,file_size_processed,end_time - start_time, cpu_speed)
 
     print(f"\nProcessamento concluído em {end_time - start_time:.2f} segundos.")
