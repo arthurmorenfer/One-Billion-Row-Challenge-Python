@@ -23,4 +23,5 @@ if __name__ == "__main__":
     file_size_processed = utils_benchmark.get_file_size(filename)
     cpu_speed = utils_benchmark.get_processor_speed()
     save_benchmark_results = utils_benchmark.benchmark_mark_time(__file__,file_size_processed, took, cpu_speed)
+    #print(__file__.split("\\")[-1])
     print(f"Duckdb Took: {took:.2f} sec")
