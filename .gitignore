@@ -12,6 +12,7 @@ measurements100M.txt
 measurements.txt
 *.txt
 *.parquet
+*bash_execute_benchmark.sh
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

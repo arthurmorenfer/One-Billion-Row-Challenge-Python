@@ -6,7 +6,7 @@ CONCURRENCY = cpu_count()
 
 total_linhas = 1_000_000_000  # Total de linhas conhecido
 chunksize = 100_000_000  # Define o tamanho do chunk
-filename = "data/measurements.txt"  # Certifique-se de que este é o caminho correto para o arquivo
+filename = "../data/measurements_one_million.txt"  # Certifique-se de que este é o caminho correto para o arquivo
 
 def process_chunk(chunk):
     # Agrega os dados dentro do chunk usando Pandas
@@ -48,5 +48,5 @@ if __name__ == "__main__":
     cpu_speed = utils_benchmark.get_processor_speed()
     current_mem_available = utils_benchmark.get_mem_installed()
     save_benchmark_results = utils_benchmark.benchmark_mark_time(__file__,file_size_processed, took, cpu_speed, current_mem_available)
-    print(df.head())
-    print(f"Processing took: {took:.2f} sec")
+    #print(df.head())
+    #print(f"Processing took: {took:.2f} sec")

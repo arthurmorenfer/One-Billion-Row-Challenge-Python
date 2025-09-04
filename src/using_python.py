@@ -3,7 +3,7 @@ from collections import defaultdict, Counter
 from tqdm import tqdm  # barra de progresso
 import time
 
-NUMERO_DE_LINHAS = 1_000_000_000
+NUMERO_DE_LINHAS = 1_000_000
 
 def processar_temperaturas(path_do_csv):
     # utilizando infinito positivo e negativo para comparar
@@ -12,7 +12,7 @@ def processar_temperaturas(path_do_csv):
     somas = defaultdict(float)
     medicoes = Counter()
 
-    with open(path_do_csv, 'r') as file:
+    with open(path_do_csv, 'r', encoding="utf-8") as file:
         _reader = reader(file, delimiter=';')
         # usando tqdm diretamente no iterador, isso mostrará a porcentagem de conclusão.
         for row in tqdm(_reader, total=NUMERO_DE_LINHAS, desc="Processando"):
@@ -43,7 +43,7 @@ def processar_temperaturas(path_do_csv):
 
 if __name__ == "__main__":
     import utils_benchmark
-    path_do_csv = "data/measurements.txt"
+    path_do_csv = "../data/measurements_one_million.txt"
 
     print("Iniciando o processamento do arquivo.")
     start_time = time.time()  # Tempo de início
@@ -52,8 +52,8 @@ if __name__ == "__main__":
 
     end_time = time.time()  # Tempo de término
 
-    for station, metrics in resultados.items():
-        print(station, metrics, sep=': ')
+    #for station, metrics in resultados.items():
+    #    print(station, metrics, sep=': ')
     
     file_size_processed = utils_benchmark.get_file_size(path_do_csv)
     cpu_speed = utils_benchmark.get_processor_speed()
