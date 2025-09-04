@@ -57,6 +57,7 @@ if __name__ == "__main__":
     
     file_size_processed = utils_benchmark.get_file_size(path_do_csv)
     cpu_speed = utils_benchmark.get_processor_speed()
-    save_benchmark_results = utils_benchmark.benchmark_mark_time(__file__,file_size_processed,end_time - start_time, cpu_speed)
+    current_mem_available= utils_benchmark.get_mem_installed()
+    save_benchmark_results = utils_benchmark.benchmark_mark_time(__file__,file_size_processed,end_time - start_time, cpu_speed, current_mem_available)
 
     print(f"\nProcessamento concluído em {end_time - start_time:.2f} segundos.")
